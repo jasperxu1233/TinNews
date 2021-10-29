@@ -1,14 +1,22 @@
 package com.laioffer.tinnews.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Objects;
 
+@Entity  //specifies the columns of the article table.
 public class Article {  //response body里面的内容
     public String author;
     public String content;
     public String description;
     public String publishedAt;
     public String title;
-    public String url;
+
+    @NonNull
+    @PrimaryKey
+    public String url;  //url is used as the primary key of the table.
     public String urlToImage;
 
     @Override
