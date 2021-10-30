@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment); //拿到activity_mian.xml的fragment的控制权
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(binding.navView, navController);  //将fragment的控制权和nav_view（bottom）联动，是的底部的按键有控制权
-        NavigationUI.setupActionBarWithNavController(this, navController); //使 actionbar拥有控制权
+//        NavigationUI.setupActionBarWithNavController(this, navController); //使 actionbar拥有控制权
     }
 
     @Override

@@ -4,10 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity  //specifies the columns of the article table.
-public class Article {  //response body里面的内容
+public class Article implements Serializable {  //response body里面的内容
     public String author;
     public String content;
     public String description;

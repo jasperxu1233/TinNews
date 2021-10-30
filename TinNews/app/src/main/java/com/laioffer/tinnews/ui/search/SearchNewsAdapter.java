@@ -19,6 +19,17 @@ import java.util.List;
 
 //用于更新屏幕上的内同的class
 public class SearchNewsAdapter extends RecyclerView.Adapter<SearchNewsAdapter.SearchNewsViewHolder> {
+    interface ItemCallback {
+        void onOpenDetails(Article article);
+    }
+
+    private ItemCallback itemCallback;
+
+    public void setItemCallback(ItemCallback itemCallback) {
+        this.itemCallback = itemCallback;
+    }
+
+
     // 1. Supporting data:
     // TODO
     private List<Article> articles = new ArrayList<>();
@@ -61,6 +72,7 @@ public class SearchNewsAdapter extends RecyclerView.Adapter<SearchNewsAdapter.Se
 
         holder.itemTitleTextView.setText(article.title);  //每个item的data，如何创建对应的item
         Picasso.get().load(article.urlToImage).resize(200, 200).into(holder.itemImageView);
+        holder.itemView.setOnClickListener(v -> itemCallback.onOpenDetails(article));
 
     }
 

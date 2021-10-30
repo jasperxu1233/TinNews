@@ -12,6 +12,8 @@ import com.laioffer.tinnews.model.NewsResponse;
 import com.laioffer.tinnews.network.NewsApi;
 import com.laioffer.tinnews.network.RetrofitClient;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,7 +26,7 @@ public class NewsRepository {  //本class负责 向network 拿data的行为   //
 
     public NewsRepository() {
 
-        newsApi = RetrofitClient.newInstance().create(NewsApi.class);
+        newsApi = RetrofitClient.newInstance(this).create(NewsApi.class);
         database = TinNewsApplication.getDatabase();
     }
 
@@ -75,6 +77,14 @@ public class NewsRepository {  //本class负责 向network 拿data的行为   //
                             }
                         });
         return everyThingLiveData;
+    }
+
+    public LiveData<List<Article>> getAllSavedArticles() {
+        return database.articleDao().getAllArticles();
+    }
+
+    public void deleteSavedArticle(Article article) {
+        AsyncTask.execute(() -> database.articleDao().deleteArticle(article));
     }
 
     private static class FavoriteAsyncTask extends AsyncTask<Article, Void, Boolean> {

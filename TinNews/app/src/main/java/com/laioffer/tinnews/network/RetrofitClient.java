@@ -1,5 +1,8 @@
 package com.laioffer.tinnews.network;
 
+import com.laioffer.tinnews.MainActivity;
+import com.laioffer.tinnews.repository.NewsRepository;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -15,7 +18,7 @@ public class RetrofitClient {  //相当于配置文件，定义base url 和 api 
     private static final String API_KEY = "e350cd95850740f68d4d412d3a4ca9d3";
     private static final String BASE_URL = "https://newsapi.org/v2/";
 
-    public static Retrofit newInstance() {
+    public static Retrofit newInstance(NewsRepository mainActivity) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new HeaderInterceptor())
                 .build();
